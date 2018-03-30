@@ -1,0 +1,4 @@
+#!/bin/bash
+# Open Visual Studio Code in the git root
+
+code $(git rev-parse --show-toplevel)

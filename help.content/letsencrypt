@@ -1,0 +1,44 @@
+############## Apache
+
+#> sudo add-apt-repository ppa:certbot/certbot
+#> sudo apt-get update
+#> sudo apt-get install python-certbot-apache
+
+#> sudo certbot --apache -d your.domain.com -d another.domain.com
+
+See https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-16-04
+
+############## Apache Renewal
+
+#> sudo crontab -e
+15 3 * * * /usr/bin/certbot renew --quiet
+
+############## Nginx
+
+#> sudo add-apt-repository ppa:certbot/certbot
+#> sudo apt-get update
+#> apt-get install letsencrypt
+
+Add to your domain configuration:
+
+location ~ /.well-known {
+    allow all;
+}
+
+#> sudo service nginx reload
+
+#> sudo certbot certonly --webroot --webroot-path=/var/www/html -d example.com -d www.example.com
+
+#> sudo vi /etc/nginx/sites-enabled/YOUR-CONFIG
+
+ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+
+See: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04
+
+
+########### Nginx Renewal
+
+#> sudo crontab -e
+
+15 3 * * * /usr/bin/certbot renew --quiet --renew-hook "/bin/systemctl reload nginx"

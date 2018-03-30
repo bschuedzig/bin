@@ -1,0 +1,3 @@
+#!/bin/bash
+# Show routing information (ipv4)
+netstat -anr -f inet

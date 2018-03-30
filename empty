@@ -1,0 +1,3 @@
+#!/bin/bash
+# Creates an empty commit with the appended message
+git commit --allow-empty -m "$*"

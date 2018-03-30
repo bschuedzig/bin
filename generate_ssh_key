@@ -1,0 +1,6 @@
+#!/bin/bash
+# Generates a new ssh-key
+
+[[ -z "$1" ]] && echo "Please add a name of your key as a parameter" && exit 1
+
+ssh-keygen -t rsa -b 4096 -f temporary -C $@

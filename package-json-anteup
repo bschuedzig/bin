@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+// Nuke node_modules, remove all version numbers from package.json and reinstall the latest versions 
+
+const fs = require('fs');
+const cp = require('child_process');
+
+let json = JSON.parse(fs.readFileSync('package.json', 'UTF8'));
+
+console.log('Removing node_modules');
+cp.execSync('rm -rf node_modules');
+
+console.log('Creating backup file package.json.bak');
+cp.execSync('cp package.json package.json.bak');
+
+let prod = json.dependencies;
+let dev = json.devDependencies;
+
+delete json.dependencies;
+delete json.devDependencies;
+
+console.log('Rewriting package.json without dependencies');
+fs.writeFileSync('package.json', JSON.stringify(json, null, 2), 'UTF8');
+
+let prodStr = Object.keys(prod);
+console.log();
+console.log('Installing (dependencies): ' + prodStr.join(' '));
+prodStr.splice(0, 0, 'add');
+prodStr.push('--save');
+
+let devStr = Object.keys(dev);
+console.log();
+console.log('Installing (devDependencies): ' + devStr.join(' '));
+devStr.splice(0, 0, 'add');
+devStr.push('--dev');
+
+console.log();
+cp.spawnSync('yarn', prodStr, {
+    stdio: 'inherit'
+});
+
+console.log();
+cp.spawnSync('yarn', devStr, {
+    stdio: 'inherit'
+});
+console.log();

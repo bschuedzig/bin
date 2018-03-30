@@ -1,0 +1,26 @@
+#!/bin/bash
+# Shows overview about the files
+
+BINDIR=$(dirname $0)
+
+MAGIC="script text executable"
+
+for file in $BINDIR/*; do
+
+    if [[ ! -f "$file" ]]; then
+        continue
+    fi
+    
+    tmp=$(file $file)
+    if [[ $tmp != *"$MAGIC"* ]]; then
+        continue;
+    fi
+
+    comment=$(cat $file | head -2 | tail -1 | tr '// ' ' ' | tr '# ' ' ')
+    
+    out_file="\033[1m\033[32m$(basename $file)\033[0m"
+    
+    echo -e "$out_file $comment"
+    
+done;
+

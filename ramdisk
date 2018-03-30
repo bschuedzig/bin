@@ -1,0 +1,55 @@
+#!/bin/bash
+# Create a ramdisk for the current directory
+
+SIZE_MB=1024
+
+
+SIZE_KB=$(expr $SIZE_MB \* 1024 \* 2)
+
+DIR=$(pwd)
+
+RAMDISK=/Volumes/RAMDISK
+
+if [ -d $RAMDISK ]; then
+
+  if [ "$1" != "force" ]; then
+ 
+    echo "###> Ramdisk already exists at $RAMDISK, bailing"
+    echo "###> Call like this to remove old ramdisk:"
+    echo "ramdisk force"
+    exit 1
+  
+  fi
+
+  DISK=$(mount | grep "$RAMDISK" | awk '{print $1}')
+  echo $DISK
+
+  if [ ! -b $DISK ]; then
+
+    echo "###> Error finding old ram drive, bailing"
+    exit 2
+  fi
+
+  echo "###> Ejecting $DISK"
+  diskutil eject $DISK
+
+fi
+
+echo "###> Creating ramdisk"
+diskutil erasevolume HFS+ "RAMDISK" `hdiutil attach -nomount ram://$SIZE_KB`
+
+if [[ ! -d $RAMDISK ]]; then
+
+  echo "###> Error finding ramdisk at $RAMDISK"
+  exit 1
+fi
+
+echo "###> Copying over files, please wait"
+
+shopt -s dotglob
+cp -r $DIR/* $RAMDISK
+shopt -u dotglob
+
+echo "###> All set, have fun"
+echo
+echo "###> You ramdisk is at $RAMDISK"

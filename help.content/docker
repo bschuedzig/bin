@@ -1,0 +1,14 @@
+##> Start container and bash into it
+docker run -it --entrypoint /bin/bash <image>
+
+###> Disable security mechanisms
+docker run -it --entrypoint /bin/bash --security-opt seccomp:unconfined <image>
+
+###> Attach local directory into /src in container
+docker run -it --entrypoint /bin/bash -v $(pwd):/src <image>
+
+##> Start shell in running container 
+docker exec -it <containerIdOrName> /bin/bash
+
+##> Clean up
+docker system prune

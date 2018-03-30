@@ -1,0 +1,13 @@
+#!/bin/bash
+# Update brew
+
+echo brew update | figlet | lolcat
+brew update 
+echo brew upgrade | figlet | lolcat
+brew upgrade 
+echo brew prune | figlet | lolcat
+brew prune
+echo brew cleanup | figlet | lolcat
+brew cleanup
+echo brew doctor | figlet | lolcat
+brew doctor

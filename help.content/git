@@ -1,0 +1,7 @@
+##> Remove all files/directories that are NOT checked in
+git clean -fdx
+
+##> Unfork
+git clone --bare git@github.com:<OLDORG>/<OLDREPO>
+cd <OLDREPO>.git
+git push --mirror git@github.com:<NEWORG>/<NEWREPO>

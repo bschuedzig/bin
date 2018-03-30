@@ -1,0 +1,19 @@
+#!/bin/bash
+# Show contents of ~/bin/help (custom help)
+function syntax() {
+  ls -l ~/bin/help.content/
+  exit 1
+}
+
+if [ $# -eq 0 ]; then
+    syntax
+fi
+
+FILE=~/bin/help.content/$1
+
+if [ ! -f $FILE ]; then
+  syntax
+fi
+
+echo
+cat $FILE

@@ -1,0 +1,14 @@
+#!/bin/bash
+# Copies the file (argument $1) into clipboard (like if it was copied by Command+C in Finder)
+
+FILE=$(grealpath $1)
+
+echo $FILE
+
+osascript \
+  -e 'on run args' \
+  -e 'set the clipboard to POSIX file (first item of args)' \
+  -e end \
+  "$FILE"
+
+

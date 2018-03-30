@@ -1,0 +1,9 @@
+# Basics
+curl -X GET -H "Content-Type: application/json" http://url
+
+# Show response headers:        -i / --include
+# Show request headers:         -v / --verbose
+# Accept insecure SSL:          -k / --insecure
+# Force IPv4:                   -4
+# User Agent:                   -A "user agent"
+# Basic authentication:         -u username:password

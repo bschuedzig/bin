@@ -1,0 +1,4 @@
+#!/bin/bash
+# Shows the current public ip
+
+curl ipecho.net/plain; echo

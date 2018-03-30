@@ -1,0 +1,4 @@
+#!/bin/bash
+# Generate a source code comment (//) with figlet
+
+IFS=$'\n' && for name in $(echo $* | figlet); do echo "// #  $name"; done

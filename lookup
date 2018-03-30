@@ -1,0 +1,9 @@
+#!/bin/bash
+# Looks up the ip of $1 and copies it to the clipboard
+
+IP=`nslookup $1 | grep "Address:" | grep -v "#" | head -n 1 | awk '{print $2}' `
+
+echo "$1: $IP (copied to clipboard)"
+
+echo -n $IP | pbcopy
+

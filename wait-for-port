@@ -1,0 +1,16 @@
+#!/bin/bash
+# Waits until a specific port is available for tcp connection
+
+if [[ -z "$2" ]];
+then
+  echo "Syntax is: wait-for-port <host/ip> <port>"
+fi
+
+echo "Waiting for $1:$2"
+
+while ! nc -G 4 -z $1 $2; do   
+  sleep 1 
+  echo -n "."
+done
+echo ""
+echo "Host is up"

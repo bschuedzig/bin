@@ -1,0 +1,3 @@
+#!/bin/bash
+# Executes trufflepig with $* arguments
+node ~/git/mantro/trufflepig/index $*

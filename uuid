@@ -1,0 +1,8 @@
+#!/bin/bash
+# Creates a new UUID, displays it and copies it to the clipboard
+UUID=$(uuidgen)
+echo
+echo $UUID
+echo
+echo "(copied to clipboard)"
+echo -n $UUID | pbcopy

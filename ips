@@ -1,0 +1,4 @@
+#!/bin/bash
+# Show all interfaces and ips in a short overview
+temp=$(ifconfig | egrep "^[a-z0-9]*?:" | awk -F: '{print $1}')
+while read -r line; do echo $line $(ifconfig $line | grep "inet "); done <<< "$temp"

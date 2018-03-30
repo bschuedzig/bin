@@ -1,0 +1,9 @@
+#!/bin/bash
+# Stop all docker containers (does NOT remove them)
+for name in $(docker ps -q); do
+
+  echo "###> Stopping $name"
+  docker ps | grep $name
+  docker stop $name
+  echo
+done;

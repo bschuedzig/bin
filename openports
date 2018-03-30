@@ -1,0 +1,3 @@
+#!/bin/bash
+# Show a list of open ports
+lsof -n -P -i4TCP | grep LISTEN

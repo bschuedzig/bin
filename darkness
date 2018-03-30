@@ -1,0 +1,3 @@
+#!/bin/bash
+# Play darkness audio file
+afplay ~/mp3/darkness.mp3

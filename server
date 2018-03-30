@@ -1,0 +1,9 @@
+#!/bin/bash
+# Start a webserver in the current directory (optional port as argument)
+
+port=8000
+if [[ ! -z "$1" ]]; then
+  port=$1
+fi
+
+python -m SimpleHTTPServer $port

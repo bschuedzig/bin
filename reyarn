@@ -1,0 +1,5 @@
+#!/bin/bash
+# Nuke node_modules and do a fresh yarn install
+
+rm -rf node_modules
+yarn install

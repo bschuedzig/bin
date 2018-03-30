@@ -1,0 +1,17 @@
+#!/bin/bash
+# Set current rancher config
+
+if [[ -z "$1" ]]; then
+    
+    cd ~/.rancher
+    for file in preset*; do FILE=$(basename -s.json $file); FILE=${FILE#preset.}; echo $FILE; done;
+    
+else
+    FILE=~/.rancher/preset.$1.json
+
+    [[ ! -f "$FILE" ]] && echo "$FILE does not exist" && exit 1
+    
+    echo "cp $FILE ~/.rancher/cli.json"
+    cp $FILE ~/.rancher/cli.json
+    
+fi

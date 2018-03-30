@@ -1,0 +1,4 @@
+#!/bin/bash
+# Kill all mysql processes
+
+ps ax | grep "mysqld" | grep -v "grep" | awk '{print $1}' | xargs kill
