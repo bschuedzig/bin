@@ -1,4 +1,0 @@
-#!/bin/bash
-# Drone CLI with credentials / host applied
-
-drone -s $DRONE_HOST -t $DRONE_CREDENTIALS $*
