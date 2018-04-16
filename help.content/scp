@@ -1,0 +1,5 @@
+#!/bin/bash
+# Help on scp
+scp -P <port> user@host:/a/file ./localFile
+
+scp -P <port> user@host:~/homeFile ./localFile
