@@ -7,3 +7,4 @@ curl -X GET -H "Content-Type: application/json" http://url
 # Force IPv4:                   -4
 # User Agent:                   -A "user agent"
 # Basic authentication:         -u username:password
+# JSON                          -H "Content-Type: application/json" -d '{"test":5}'
