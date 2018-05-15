@@ -1,0 +1,13 @@
+#!/bin/bash
+# Pipe input through figlet, comment it out and copy it to clipboard
+TEMP=$(echo "$*" | figlet)
+
+IFS=$'\n'
+
+OUTPUT=$(for line in $TEMP; do echo "# $line"; done)
+
+echo "$OUTPUT"
+echo "$OUTPUT" | pbcopy
+
+echo "(copied to clipboard)"
+
