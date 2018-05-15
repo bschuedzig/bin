@@ -4,7 +4,7 @@ TEMP=$(echo "$*" | figlet)
 
 IFS=$'\n'
 
-OUTPUT=$(for line in $TEMP; do echo "# $line"; done)
+OUTPUT=$(for line in $TEMP; do echo "#  $line"; done)
 
 echo "$OUTPUT"
 echo "$OUTPUT" | pbcopy
