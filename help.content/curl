@@ -8,3 +8,7 @@ curl -X GET -H "Content-Type: application/json" http://url
 # User Agent:                   -A "user agent"
 # Basic authentication:         -u username:password
 # JSON                          -H "Content-Type: application/json" -d '{"test":5}'
+
+
+# Just show headers
+curl -v -s http://awesome-site.com 1> /dev/null
