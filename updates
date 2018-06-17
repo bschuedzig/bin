@@ -11,3 +11,5 @@ echo brew cleanup | figlet | lolcat
 brew cleanup
 echo brew doctor | figlet | lolcat
 brew doctor
+echo mas upgrade | figlet | lolcat
+mas upgrade
