@@ -1,0 +1,15 @@
+#!/bin/bash
+# Makes sure all docker containers are stopped before running the docker-compose file
+
+echo "Stopping all running containers"
+docker stop $(docker ps -q)
+
+if [[ -f "docker-compose.yml" ]];
+then
+  echo "Starting docker-compose"
+  docker-compose up -d 
+  docker ps
+fi
+
+
+
