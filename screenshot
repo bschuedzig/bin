@@ -1,0 +1,7 @@
+#!/bin/bash
+# Takes a screenshot of the current terminal window
+
+FILE=~/Downloads/console-$(date +%Y.%m.%d-%H:%M:%S.png)
+screencapture -l$(osascript -e 'tell app "iTerm2" to id of window 1') $FILE
+open $FILE
+
