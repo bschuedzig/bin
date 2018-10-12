@@ -12,3 +12,6 @@ curl -X GET -H "Content-Type: application/json" http://url
 
 # Just show headers
 curl -v -s http://awesome-site.com 1> /dev/null
+
+# Just show headers #2
+curl -s -I -X GET http://google.de
