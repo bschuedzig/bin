@@ -7,7 +7,8 @@ for file in *.ts;
 do
     [[ $file =~ \.test\.ts$ ]] && continue
 
-    echo "export * from './$file';" >> index.ts
+    BASE="${file%.*}"
+    echo "export * from './$BASE';" >> index.ts
 done
 
 cat index.ts
