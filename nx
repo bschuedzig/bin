@@ -1,0 +1,6 @@
+#!/bin/bash
+# Executes the arguments in node_modules/.bin
+CMD=$1
+shift
+
+node_modules/.bin/$CMD $*
