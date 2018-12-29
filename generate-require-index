@@ -1,8 +1,8 @@
 #!/bin/bash
 [[ -f "index.js" ]] && (rm index.bak 2>/dev/null; mv index.js index.bak)
 
-
-echo "module.exports = {" > index.js
+#echo "/* eslint import/no-webpack-loader-syntax: off */" > index.js
+echo "module.exports = {" >> index.js
 
 for name in *; do
 
