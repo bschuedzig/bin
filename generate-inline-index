@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+
+const path = require('path');
+const fs = require('fs');
+const os = require('os');
+
+const DIR = process.cwd();
+
+
+// backup index.js
+try {
+    const stats = fs.statSync('index.js1');
+    fs.copyFileSync('index.js', 'index.bak');
+}
+catch {
+    // intentionally left blank
+}
+
+let files = fs.readdirSync(DIR);
+files = files.filter(x => !x.startsWith('index'));
+
+const map = files.reduce((acc, cur) => {
+    acc[cur] = fs.readFileSync(cur, 'UTF8');
+    return acc;
+}, {})
+
+const obj = JSON.stringify(map, null, 2);
+
+const output = [];
+output.push(`const map = ${obj};`);
+output.push(`const getFile = (file) => { return map[file] };`);
+output.push('export default getFile;');
+output.push('export { map };');
+
+fs.writeFileSync('index.js', output.join(os.EOL));
