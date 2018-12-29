@@ -1,0 +1,19 @@
+#!/bin/bash
+[[ -f "index.js" ]] && (rm index.bak 2>/dev/null; mv index.js index.bak)
+
+
+echo "module.exports = {" > index.js
+
+for name in *; do
+
+    # only files
+    [[ ! -f "$name" ]] && continue;
+
+    # ignore anything with index prefix
+    [[ "$name" =~ ^index\..*$ ]] && continue;
+    
+    echo "\"$name\": require('./$name')," >> index.js
+
+done
+
+echo "};" >> index.js
