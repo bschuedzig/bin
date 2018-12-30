@@ -1,0 +1,19 @@
+##> Open local SOCKS server to proxy traffic through endpoint
+ssh -D 8888 user@remoteserver
+
+##> Open SOCKS proxy to network
+ssh -D 0.0.0.0:8888 user@remoteserver
+
+##> See https://github.com/haad/proxychains
+
+##> Forward local port 10000 to 10.1.2.3:20000 on the other network side 
+ssh -L 10000:10.1.2.3:20000
+
+##> Open local port 10000 to the local network
+ssh -L 0.0.0.0:10000:10.1.2.3:20000
+
+##> Forward remote port (10000) to 192.168.10.20:443 on local network
+ssh -v -R 0.0.0.0:10000:192.168.10.20:443
+
+##> Mount remote directory (osxfuse+sshfs required)
+sshfs user@remote:/some/folder ~/local/mountpoint
