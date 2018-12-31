@@ -2,7 +2,9 @@
 # Makes sure all docker containers are stopped before running the docker-compose file
 
 echo "Stopping all running containers"
-docker stop $(docker ps -q)
+CONTAINERS=$(docker ps -q)
+docker stop $CONTAINERS
+docker rm $CONTAINERS
 
 echo "Starting docker-compose"
 docker-compose up -d 
