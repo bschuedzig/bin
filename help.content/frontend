@@ -1,0 +1,19 @@
+# Everything regarding frontend/webpack/react
+
+# Check unused dependencies
+yarn add depcheck
+node_modules/.bin/depcheck
+
+# Check licenses
+yarn add license-checker
+node_modules/.bin/license-checker               # For full list
+node_modules/.bin/license-checker --summary     # Summary
+
+# Legally
+yarn add legally
+node_modules/.bin/legally > output.tmp
+
+# Yarn licenses
+yarn licenses list
+yarn licenses generate-disclaimer
+
