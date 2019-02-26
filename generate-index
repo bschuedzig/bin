@@ -3,7 +3,7 @@
 
 rm index.ts 2> /dev/null
 
-for file in *.ts?;
+for file in *.ts *.tsx;
 do
     [[ $file =~ \.test\.ts$ ]] && continue
 
