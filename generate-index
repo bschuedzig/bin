@@ -3,7 +3,9 @@
 
 rm index.ts 2> /dev/null
 
-for file in *.ts *.tsx;
+shopt -s nullglob
+
+for file in *.{tsx,ts};
 do
     [[ $file =~ \.test\.ts$ ]] && continue
 
