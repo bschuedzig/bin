@@ -7,7 +7,7 @@ shopt -s nullglob
 
 for file in *.{tsx,ts};
 do
-    [[ $file =~ \.test\.ts$ ]] && continue
+    [[ $file =~ \.test\.tsx?$ ]] && continue
 
     BASE="${file%.*}"
     echo "export * from './$BASE';" >> index.ts
