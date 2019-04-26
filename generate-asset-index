@@ -42,9 +42,9 @@ result.forEach(file => {
 
 const inner = lines.join(',' + os.EOL + '  ');
 const outer = `
-module.exports = {
+export const Assets = {
   ${inner}
 };
 `;
 
-fs.writeFileSync('index.js', outer, 'UTF8');
+fs.writeFileSync('index.ts', outer, 'UTF8');
