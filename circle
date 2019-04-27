@@ -1,0 +1,19 @@
+#!/bin/bash
+
+while true; do
+
+    DIR=$(pwd)
+    if [[ "$DIR" == "/" ]]; then
+        echo "Not found 😞"
+        exit 1
+    fi
+
+    FILE="$DIR/.circleci/config.yml"
+
+    if [[ -f "$FILE" ]]; then
+        echo "Found at $FILE 🚀"
+        code "$FILE"
+        exit 0
+    fi
+    cd ..
+done
