@@ -1,0 +1,3 @@
+# How to migrate database from the command line
+
+flyway -user=example -password=example -driver=org.postgresql.Driver -locations=filesystem:. -schemas=public -url=jdbc:postgresql://localhost:5432/example migrate
