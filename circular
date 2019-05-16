@@ -1,0 +1,6 @@
+#!/bin/bash
+# Detects circular dependencies in a project
+
+[[ -z "$1" ]] && echo "Please specify the target directory as a parameter" && exit 1
+
+madge -c --extensions ts,js,tsx,jsx "$1"
