@@ -1,0 +1,12 @@
+#!/bin/bash
+# Opens current repository on GitHub (if available)
+
+REMOTES=$(git remote -v 2>/dev/null)
+
+[[ "$?" != 0 ]] && echo "Cannot get git remote information, not a git repo?" && exit 1
+
+REMOTE=$(echo "$REMOTES" | grep "github" | grep "fetch" | awk '{print $2}')
+
+REPO=$(echo "$REMOTE" | awk -F@ '{print $2}' | awk -F: '{print $2}' | awk -F. '{print $1}')
+LINK="https://github.com/${REPO}"
+open "$LINK"
