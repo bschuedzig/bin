@@ -1,0 +1,25 @@
+#!/bin/bash
+# Sets current kube context
+
+CTX=$1
+
+syntax() {
+  echo "kubecontext <CONTEXT>"
+  echo
+  kubectl config get-contexts 
+  exit 1
+}
+
+[[ -z "$CTX" ]] && syntax
+
+CONTEXT=$(kubectl config get-contexts | grep "$CTX")
+
+LINES=$(echo "$CONTEXT" | wc -l)
+
+[[ "$LINES" -ne "1" ]] && echo "Too many matches, please refine:" && echo "$CONTEXT" && exit 1
+
+CONTEXT=$(echo "$CONTEXT" | awk '{print $2}')
+
+printf "Selected: \e[1;31m ${CONTEXT} \e[0m\n"
+
+kubectl config use-context "$CONTEXT"
