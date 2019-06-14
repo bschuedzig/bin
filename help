@@ -1,7 +1,7 @@
 #!/bin/bash
 # Show contents of ~/bin/help (custom help)
 function syntax() {
-  ls -l ~/bin/help.content/
+  ls -1 ~/bin/help.content/
   exit 1
 }
 
