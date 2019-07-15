@@ -1,0 +1,4 @@
+#!/bin/bash
+# Kills all remnants of metro bundler
+
+ps aux | grep metro | awk '{print $2}' | xargs kill
