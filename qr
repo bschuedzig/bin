@@ -1,6 +1,7 @@
 #!/bin/bash
 # Creates a QR Code from the command line input
+# pip install segno 
 
 [[ -z "$2" ]] && echo "Syntax is: qr Some Funny text" && exit 1
 
-printf "$*" | curl -F-=\<- qrenco.de
+segno "$*"

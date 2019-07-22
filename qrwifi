@@ -1,0 +1,12 @@
+#!/bin/bash
+# Creates a QR Code for a wireless networkf
+# pip install segno 
+
+[[ -z "$2" ]] && echo "Syntax is: qrwifi "SSID" "PASSWORD"" && exit 1
+
+SSID=$1
+PASSWORD=$2
+STR="WIFI:S:${SSID};T:WPA;P:${PASSWORD};:"
+
+echo "Encoding: $STR"
+segno "$STR"
