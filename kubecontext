@@ -3,23 +3,33 @@
 
 CTX=$1
 
+found() {
+
+  printf "Selected: \e[1;31m ${1} \e[0m\n"
+  # kubectl config use-context "$1"
+  exit 0
+}
+
 syntax() {
   echo "kubecontext <CONTEXT>"
   echo
-  kubectl config get-contexts 
+  kubectl config get-contexts
   exit 1
 }
 
 [[ -z "$CTX" ]] && syntax
 
-CONTEXT=$(kubectl config get-contexts | grep "$CTX")
+CONTEXT_NAMES=$(kubectl config get-contexts | tail -n +2 | awk '{print $2}')
 
-LINES=$(echo "$CONTEXT" | wc -l)
+CONTEXT=$(echo "$CONTEXT_NAMES" | grep "^${CTX}\$")
+LINES=$(echo "$CONTEXT_NAMES" | grep "^${CTX}\$" -c)
 
-[[ "$LINES" -ne "1" ]] && echo "Too many matches, please refine:" && echo "$CONTEXT" && exit 1
+[[ "$LINES" -eq "1" ]] && found "$CONTEXT"
 
-CONTEXT=$(echo "$CONTEXT" | awk '{print $2}')
+CONTEXT=$(echo "$CONTEXT_NAMES" | grep "${CTX}")
+LINES=$(echo "$CONTEXT_NAMES" | grep "${CTX}" -c)
 
-printf "Selected: \e[1;31m ${CONTEXT} \e[0m\n"
+[[ "$LINES" -eq "1" ]] && found "$CONTEXT"
 
-kubectl config use-context "$CONTEXT"
+echo "Too many matches, please refine: $CTX"
+exit 1
