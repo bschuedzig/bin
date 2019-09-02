@@ -11,3 +11,5 @@ echo brew doctor | figlet | lolcat
 brew doctor
 echo mas upgrade | figlet | lolcat
 mas upgrade
+echo "pod repo update" | figlet | lolcat
+pod repo update
