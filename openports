@@ -1,3 +1,6 @@
 #!/bin/bash
 # Show a list of open ports
+echo "===== TCP"
 lsof -n -P -i4TCP | grep LISTEN
+echo "===== UDP"
+lsof -n -P -i4UDP 
