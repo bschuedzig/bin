@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+const fs = require('fs');
+
+if (!fs.existsSync('package.json')) {
+    console.error('Cannot find package.json in current directory');
+    process.exit(1);
+}
+
+const ansiReset = '\u001b[0m';
+const ansiGreen = '\u001b[32m';
+
+const packageJson = JSON.parse(fs.readFileSync('package.json', 'UTF8'));
+const scripts = packageJson.scripts;
+
+let keys = Object.keys(scripts);
+const maxLength = Math.max(...keys.map(x => x.length))
+
+for (const key of Object.keys(scripts)) {
+    console.log(`${ansiGreen}${key.padEnd(maxLength, ' ')}${ansiReset}  ${scripts[key]}`)
+}
+
