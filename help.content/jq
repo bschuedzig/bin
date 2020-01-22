@@ -1,0 +1,5 @@
+# Pretty print (whole file)
+cat sample.json | jq '.'
+
+# Filter array
+cat sample.json | jq '.[] | { .repo }'
