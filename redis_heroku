@@ -1,0 +1,20 @@
+#!/bin/bash
+# Connects to redis in the current HEROKU_APP
+
+REDIS=$(heroku redis:credentials)
+
+if [[ "$?" -ne 0 ]]; then
+  echo "Something when wrong when executing 'heroku redis:credentials'"
+  exit 1
+fi
+
+[[ $REDIS =~ (h:)([^@]*) ]] || exit 1
+PASSWORD="${BASH_REMATCH[2]}"
+
+[[ $REDIS =~ (@)([^:]*) ]] || exit 1
+HOST="${BASH_REMATCH[2]}"
+
+[[ $REDIS =~ (@)([^:]*):(.*) ]] || exit 1
+PORT="${BASH_REMATCH[3]}"
+
+redis-cli -a "$PASSWORD" -h "$HOST" -p "$PORT"
