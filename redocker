@@ -3,12 +3,12 @@
 
 echo "Stopping all running containers"
 CONTAINERS=$(docker ps -q)
-docker stop $CONTAINERS
+docker kill $CONTAINERS
 docker rm $CONTAINERS
 
 echo "Starting docker-compose"
 docker-compose up -d 
-docker ps
 
+docker-compose logs -f
 
 
