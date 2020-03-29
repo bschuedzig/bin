@@ -1,0 +1,3 @@
+#!/bin/bash
+# Opens an ngrok tunnel with my configuration
+ngrok http -hostname=bschuedzig.eu.ngrok.io -region eu $@
