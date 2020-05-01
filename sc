@@ -5,7 +5,7 @@ FILES=$(fd '.sh$')
 
 while read -r file; do
     shellcheck "$file"
-    grep -e "^set -" "$file" >/dev/null || {
+    grep -e "set -" "$file" >/dev/null || {
         echo "$file  (no 'set -e')"
     }
 done <<<"$FILES"
