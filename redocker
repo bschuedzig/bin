@@ -5,6 +5,7 @@ echo "Stopping all running containers"
 CONTAINERS=$(docker ps -q)
 docker kill $CONTAINERS
 docker rm $CONTAINERS
+yes | docker volume prune
 
 echo "Starting docker-compose"
 docker-compose up -d 
