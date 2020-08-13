@@ -1,17 +1,35 @@
 # Basics
-curl -X GET -H "Content-Type: application/json" http://url
+curl -H "Content-Type: application/json" http://url
 
-# Show response headers:        -i / --include
-# Show request headers:         -v / --verbose
-# Accept insecure SSL:          -k / --insecure
-# Force IPv4:                   -4
-# User Agent:                   -A "user agent"
-# Basic authentication:         -u username:password
-# JSON                          -H "Content-Type: application/json" -d '{"test":5}'
+# Specify VERB
+curl -X DELETE https://www.google.de/
 
+# Include headers in output
+curl -i https://www.google.de
 
-# Just show headers
-curl -v -s http://awesome-site.com 1> /dev/null
+# ONLY headers in output
+curl -I https://www.google.de
 
-# Just show headers #2
-curl -s -I -X GET http://google.de
+# Show all communcation
+curl -v https://www.google.de
+
+# Show outgoing and incoming headers only
+curl -vI https://www.google.de
+
+# Set user agent
+curl -A "Firefucks" https://www.google.de
+
+# Basic authentication
+curl -u "user:password" https://www.google.de
+
+# Add JSON payload
+curl -H "Content-Type: application/json" -d '{"test": true}'
+
+# Add JSON payload from file 
+curl -H "Content-Type: application/json" -d @input.json
+
+# Ignore SSL errors
+curl --insecure https://www.google.de
+
+# Change hostname
+curl --insecure --resolve 'www.google.de:443:127.0.0.1' https://www.google.de 
