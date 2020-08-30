@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Chrome"
+clear-chrome-cache.sh
+
+echo "Safari"
+clear-safari-cache.sh
