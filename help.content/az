@@ -1,0 +1,15 @@
+# Where the fuck am I
+az account show -o yaml
+
+# Get subscriptions
+az account list -o table
+
+# Chose subscription
+az account set --subscription "<ID>"
+
+# List AKS clusters
+az aks list -o yaml
+
+# Get kubeconfig (gets saved as ~/.kube/config"
+az aks get-credentials --name "<NAME>" --resource-group "<RESOURCE-GROUP>"
+
