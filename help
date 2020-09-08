@@ -16,4 +16,4 @@ if [ ! -f $FILE ]; then
 fi
 
 echo
-cat $FILE
+bat -l bash $FILE

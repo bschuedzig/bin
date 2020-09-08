@@ -13,3 +13,16 @@ az aks list -o yaml
 # Get kubeconfig (gets saved as ~/.kube/config"
 az aks get-credentials --name "<NAME>" --resource-group "<RESOURCE-GROUP>"
 
+
+# https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps
+# Create service principal
+az ad sp create-for-rbac --name "DeleteMe" --skip-assignment
+
+# list service principals (how to filter down to apps?)
+az ad sp list 
+
+az ad app list -o yaml
+
+
+# create role assignment for ACR
+az role assignment create --role Contributor --scope "/subscriptions/<ID>/resourceGroups/<RG>/providers/Microsoft.ContainerRegistry/registries/<REG>" --assignee "http://<ID>"
