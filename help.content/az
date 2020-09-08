@@ -18,11 +18,9 @@ az aks get-credentials --name "<NAME>" --resource-group "<RESOURCE-GROUP>"
 # Create service principal
 az ad sp create-for-rbac --name "DeleteMe" --skip-assignment
 
-# list service principals (how to filter down to apps?)
-az ad sp list 
 
-az ad app list -o yaml
-
+# Filter apps by current organization
+az ad sp list --query "[?signInAudience=='AzureADMyOrg']" --all
 
 # create role assignment for ACR
 az role assignment create --role Contributor --scope "/subscriptions/<ID>/resourceGroups/<RG>/providers/Microsoft.ContainerRegistry/registries/<REG>" --assignee "http://<ID>"
