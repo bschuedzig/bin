@@ -7,17 +7,21 @@ az account list -o table
 # Chose subscription
 az account set --subscription "<ID>"
 
+# List container registries
+az acr list
+
+# Docker login
+az acr login --name "<name>"
+
 # List AKS clusters
 az aks list -o yaml
 
 # Get kubeconfig (gets saved as ~/.kube/config"
 az aks get-credentials --name "<NAME>" --resource-group "<RESOURCE-GROUP>"
 
-
 # https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps
 # Create service principal
 az ad sp create-for-rbac --name "DeleteMe" --skip-assignment
-
 
 # Filter apps by current organization
 az ad sp list --query "[?signInAudience=='AzureADMyOrg']" --all
