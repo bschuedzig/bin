@@ -1,0 +1,19 @@
+#!/bin/bash
+set -euo pipefail
+
+USER=${1:-}
+PASS=${2:-}
+
+if [[ -z "$PASS" ]]; then
+    echo "basicauth <user> <pass>"
+    exit 1
+fi
+
+LINE=$(htpasswd -nb "$USER" "$PASS")
+echo
+echo "=> htpasswd"
+echo "$LINE"
+echo
+echo "=> base64"
+echo "$LINE" | base64
+echo
