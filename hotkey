@@ -1,0 +1,16 @@
+#!/bin/bash
+FIFO="/tmp/global_hotkey"
+
+# drain the pipe
+timeout 1 bash <<EOT
+while true; do
+read -r <"$FIFO"
+done
+EOT
+
+# wait for input on the pipe
+while true; do
+    echo "(waiting for [Ctrl Option Command +])"
+    read -r <"$FIFO"
+    "$@"
+done

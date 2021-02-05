@@ -1,4 +1,9 @@
 #!/bin/bash
 # Generate a source code comment (//) with figlet
+OUTPUT=$(
+  IFS=$'\n' && for name in $(echo $* | figlet); do echo "// #  $name"; done
+)
 
-IFS=$'\n' && for name in $(echo $* | figlet); do echo "// #  $name"; done
+echo "$OUTPUT"
+echo "$OUTPUT" | pbcopy
+echo "(copied to clipboard)"

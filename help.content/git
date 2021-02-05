@@ -5,3 +5,6 @@ git clean -fdx
 git clone --bare git@github.com:<OLDORG>/<OLDREPO>
 cd <OLDREPO>.git
 git push --mirror git@github.com:<NEWORG>/<NEWREPO>
+
+##> Delete local stale branches
+git remote prune origin

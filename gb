@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+
+LOCAL_BRANCH=$(git branch --show-current)
+
+REMOTE_BRANCH=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null || echo "")
+
+if [[ -z "$REMOTE_BRANCH" ]]; then
+    REMOTE_BRANCH="origin/$LOCAL_BRANCH"
+    echo "Configure $LOCAL_BRANCH => $REMOTE_BRANCH"
+    echo "(Ctrl+C to cancel)"
+    read -r
+    git branch --set-upstream-to="$REMOTE_BRANCH" "$LOCAL_BRANCH"
+else
+    echo "$LOCAL_BRANCH => $REMOTE_BRANCH (already exists)"
+fi
